@@ -30,8 +30,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'DM Sans', system-ui, sans-serif; }
+    html, body { font-family: 'DM Sans', system-ui, sans-serif; background-color: #050510 !important; color: #ffffff; }
     h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; }
+    section, footer, nav { background-color: transparent; }
 
     .glow-text {
       text-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.2);
@@ -99,33 +100,37 @@
   </nav>
 
   <!-- Hero -->
-  <section class="relative min-h-[100dvh] flex items-center justify-center pt-16">
-    <div class="absolute inset-0 bg-gradient-to-b from-comet/5 via-transparent to-transparent pointer-events-none"></div>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-      <div class="flex-1 text-center lg:text-left">
-        <p class="text-comet font-medium text-sm tracking-widest uppercase mb-4">Community-driven meme token</p>
-        <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-          <span class="glow-text text-comet">Baby Asteroid</span><br />
-          <span class="text-white/90">has entered orbit.</span>
-        </h1>
-        <p class="text-stardust text-lg sm:text-xl max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
-          A tiny pup in an astronaut suit, hitching a ride on the ASTEROID comet. Every transaction feeds you ASTEROID reflections. No VC money. No insider games. Just a dog, a helmet, and a mission.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <a href="#how-to-buy" class="inline-flex items-center justify-center bg-comet text-void font-semibold px-8 py-3.5 rounded-xl text-base hover:bg-comet/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet focus:ring-offset-2 focus:ring-offset-void">
-            Buy $BABYASTEROID
-          </a>
-          <a href="#about" class="inline-flex items-center justify-center border border-white/15 text-white/80 font-medium px-8 py-3.5 rounded-xl text-base hover:border-white/30 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-void">
-            Read the story
-          </a>
-        </div>
-      </div>
-      <div class="flex-1 flex justify-center">
-        <img
-          src="public/images/hero/001_A_dog_in_an_astronaut_suit_walks_on_the_moons_i_KcZn4g.png"
-          alt="Baby Asteroid — a Shiba Inu in an astronaut suit walking on the moon"
-          class="hero-float w-72 sm:w-96 lg:w-[28rem] drop-shadow-2xl rounded-2xl"
-        />
+  <section class="relative min-h-[100dvh] flex items-end justify-center bg-black">
+    <!-- Full-screen background image -->
+    <div class="absolute inset-0">
+      <img
+        src="public/images/hero/001_A_dog_in_an_astronaut_suit_walks_on_the_moons_i_KcZn4g.png"
+        alt="Baby Asteroid — a Shiba Inu in an astronaut suit walking on the moon"
+        class="w-full h-full object-cover opacity-70"
+      />
+      <!-- Heavy gradient stack for legibility -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-black/40"></div>
+    </div>
+    <!-- Content overlay at bottom -->
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24 pt-32 text-center">
+      <p class="text-comet font-medium text-sm tracking-widest uppercase mb-4">Community-driven meme token</p>
+      <h1 class="font-heading text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-4">
+        <span class="glow-text text-comet">Baby Asteroid</span>
+      </h1>
+      <p class="font-heading text-xl sm:text-2xl lg:text-3xl font-medium text-white/90 mb-8">
+        Earn $ASTEROID by holding Baby Asteroid.
+      </p>
+      <p class="text-stardust text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+        A tiny pup in an astronaut suit, hitching a ride on the ASTEROID comet. No VC money. No insider games. Just a dog, a helmet, and a mission.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#how-to-buy" class="inline-flex items-center justify-center bg-comet text-void font-semibold px-8 py-3.5 rounded-xl text-base hover:bg-comet/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet focus:ring-offset-2 focus:ring-offset-void">
+          Buy $BABYASTEROID
+        </a>
+        <a href="#about" class="inline-flex items-center justify-center border border-white/15 text-white/80 font-medium px-8 py-3.5 rounded-xl text-base hover:border-white/30 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-void">
+          Read the story
+        </a>
       </div>
     </div>
   </section>
@@ -136,8 +141,8 @@
       <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div class="flex-1">
           <img
-            src="public/images/character-poses/002_An_adorable_Shiba_Inu_dog_wearing_an_astronaut_QhmcYNxD.png"
-            alt="Baby Asteroid character — Shiba Inu astronaut pose"
+            src="public/images/social/001_In_a_charming_cartoon_style_a_Shiba_Inu_dog_CHZ4lv5q.png"
+            alt="Baby Asteroid character floating in space"
             class="w-64 sm:w-80 mx-auto rounded-2xl"
           />
         </div>
@@ -158,8 +163,12 @@
   </section>
 
   <!-- Tokenomics -->
-  <section id="tokenomics" class="relative py-24 sm:py-32">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+  <section id="tokenomics" class="relative py-24 sm:py-32 overflow-hidden">
+    <!-- Subtle background accent -->
+    <div class="absolute left-0 bottom-0 opacity-[0.06] pointer-events-none hidden lg:block" aria-hidden="true">
+      <img src="public/images/character-poses/004_In_a_cute_cartoon_style_a_furry_creature_with_a_cXPrma_b.png" alt="" class="w-[400px]" />
+    </div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
         <h2 class="font-heading text-3xl sm:text-4xl font-bold mb-4 text-white/95">Tokenomics</h2>
         <p class="text-stardust text-lg max-w-xl mx-auto">4% tax on every buy and sell. Nothing hidden, nothing complicated.</p>
@@ -209,7 +218,7 @@
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="flex flex-col items-center text-center p-6">
-          <img src="public/images/character-poses/001_In_a_kawaii_style_an_adorable_Shiba_Inu_dog_dpKurhb5.png" alt="Baby Asteroid earning reflections" class="w-32 h-32 rounded-xl mb-6 object-cover" />
+          <img src="public/images/social/007_A_cheerful_Shiba_Inu_dog_is_depicted_in_a_uejvNUlb.png" alt="Baby Asteroid earning reflections" class="w-32 h-32 rounded-xl mb-6 object-cover" />
           <h3 class="font-heading text-xl font-semibold mb-3 text-white/90">Passive ASTEROID income</h3>
           <p class="text-stardust text-sm leading-relaxed">
             2% of every transaction is redistributed as ASTEROID tokens. Your wallet balance grows while you sleep, scroll Twitter, or argue about chart patterns.
@@ -235,12 +244,14 @@
 
   <!-- How to buy -->
   <section id="how-to-buy" class="relative py-24 sm:py-32">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-16">
         <h2 class="font-heading text-3xl sm:text-4xl font-bold mb-4 text-white/95">How to buy</h2>
         <p class="text-stardust text-lg">Four steps. Takes about two minutes if your wallet is ready.</p>
       </div>
-      <div class="space-y-8">
+      <div class="flex flex-col lg:flex-row gap-16 items-center">
+      <!-- Steps -->
+      <div class="flex-1 space-y-8">
         <div class="flex gap-6 items-start">
           <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-comet/10 border border-comet/20 flex items-center justify-center font-heading font-bold text-comet text-lg">1</div>
           <div>
@@ -270,55 +281,60 @@
           </div>
         </div>
       </div>
+      <!-- Side image -->
+      <div class="flex-1 hidden lg:flex justify-center">
+        <img
+          src="public/images/social/002_In_a_cartoon_style_a_dog_wearing_an_astronaut_UCASho_a.png"
+          alt="Baby Asteroid astronaut ready for launch"
+          class="w-80 rounded-2xl"
+        />
+      </div>
+      </div>
     </div>
   </section>
 
-  <!-- Community / Gallery -->
-  <section id="community" class="relative py-24 sm:py-32 bg-nebula/50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
+  <!-- Community -->
+  <section id="community" class="relative py-24 sm:py-32 bg-nebula/50 overflow-hidden">
+    <!-- Background accent image -->
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 opacity-10 pointer-events-none hidden lg:block" aria-hidden="true">
+      <img src="public/images/hero/002_In_a_charming_illustration_style_three_Shiba_Inu_-VSuFvSe.png" alt="" class="w-[500px]" />
+    </div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-2xl">
         <h2 class="font-heading text-3xl sm:text-4xl font-bold mb-4 text-white/95">Join the crew</h2>
-        <p class="text-stardust text-lg max-w-xl mx-auto">
-          Baby Asteroid lives and breathes through its community. Jump into the chat, share memes, and help spread the word.
+        <p class="text-stardust text-lg mb-10 leading-relaxed">
+          Baby Asteroid lives and breathes through its community. The group chat is where calls get made, memes get born, and raids get planned. No gatekeeping.
         </p>
-      </div>
-      <!-- Social links -->
-      <div class="flex flex-wrap justify-center gap-4 mb-16">
-        <a href="#" class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet/50">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Twitter / X
-        </a>
-        <a href="#" class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet/50">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286z"/></svg>
-          Discord
-        </a>
-        <a href="#" class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet/50">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-          Telegram
-        </a>
-      </div>
-      <!-- Image gallery -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        <img src="public/images/social/001_In_a_charming_cartoon_style_a_Shiba_Inu_dog_CHZ4lv5q.png" alt="Baby Asteroid meme art" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
-        <img src="public/images/hero/003_In_a_playful_digital_art_style_a_cartoon_Shiba_nK-Oj8yV.png" alt="Baby Asteroid space scene" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
-        <img src="public/images/character-poses/006_In_a_cute_illustration_style_a_Shiba_Inu_dog_uHHnG9lK.png" alt="Baby Asteroid character pose" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
-        <img src="public/images/social/003_A_Shiba_Inu_dog_wearing_a_white_astronaut_suit_2qHrKut6.png" alt="Baby Asteroid social art" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
-        <img src="public/images/hero/002_In_a_charming_illustration_style_three_Shiba_Inu_-VSuFvSe.png" alt="Baby Asteroid crew illustration" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
-        <img src="public/images/social/005_In_a_charming_stylized_illustration_a_small_dog_q3CDJxqm.png" alt="Baby Asteroid stylized art" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
-        <img src="public/images/character-poses/007_A_cartoon_dog_in_a_white_astronaut_suit_with_a_Wzfm233e.png" alt="Baby Asteroid in space suit" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
-        <img src="public/images/hero/004_In_a_cartoon_style_a_Shiba_Inu_dog_wearing_a_VGI-lYxV.png" alt="Baby Asteroid hero art" class="rounded-xl w-full aspect-square object-cover border border-white/5 hover:border-comet/30 transition-colors duration-200" />
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet/50">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Twitter / X
+          </a>
+          <a href="#" class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet/50">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286z"/></svg>
+            Discord
+          </a>
+          <a href="#" class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet/50">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Telegram
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA banner -->
-  <section class="relative py-24 sm:py-32">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+  <section class="relative py-32 sm:py-40 overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0" aria-hidden="true">
       <img
-        src="public/images/hero/005_In_a_charming_cartoon_style_a_Shiba_Inu_dog_SAg4Md0r.png"
-        alt="Baby Asteroid ready for launch"
-        class="w-40 sm:w-52 mx-auto mb-8 rounded-2xl hero-float"
+        src="public/images/hero/003_In_a_playful_digital_art_style_a_cartoon_Shiba_nK-Oj8yV.png"
+        alt=""
+        class="w-full h-full object-cover opacity-20"
       />
+      <div class="absolute inset-0 bg-gradient-to-t from-void via-void/85 to-void/70"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
       <h2 class="font-heading text-3xl sm:text-5xl font-bold mb-6 text-white/95">
         The comet's moving.<br />
         <span class="text-comet glow-text">Don't get left on the launchpad.</span>
