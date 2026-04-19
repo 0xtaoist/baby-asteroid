@@ -6,6 +6,7 @@
   <title>Baby Asteroid — The Pup That Rode a Comet</title>
   <meta name="description" content="Baby Asteroid is a community-driven meme token with 2% ASTEROID reflections, 1% LP, and 1% marketing. Built by degens, for degens." />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
   <script>
     tailwindcss.config = {
       theme: {
@@ -91,6 +92,7 @@
         <a href="#about" class="hover:text-comet transition-colors duration-200">About</a>
         <a href="#tokenomics" class="hover:text-comet transition-colors duration-200">Tokenomics</a>
         <a href="#how-to-buy" class="hover:text-comet transition-colors duration-200">How to buy</a>
+        <a href="#rewards" class="hover:text-comet transition-colors duration-200">Rewards</a>
         <a href="#community" class="hover:text-comet transition-colors duration-200">Community</a>
       </div>
       <a href="#how-to-buy" class="bg-comet/10 text-comet border border-comet/30 px-4 py-2 rounded-lg text-sm font-medium hover:bg-comet/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet/50 focus:ring-offset-2 focus:ring-offset-void">
@@ -249,6 +251,69 @@
     </div>
   </section>
 
+  <!-- Rewards -->
+  <section id="rewards" class="relative py-24 sm:py-32">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl sm:text-4xl font-bold mb-4 text-white/95">Claim Your Rewards</h2>
+        <p class="text-stardust text-lg max-w-xl mx-auto">Connect your wallet to view and claim your ASTEROID reflections. Rewards accumulate automatically from every transaction.</p>
+      </div>
+
+      <div class="max-w-md mx-auto">
+        <!-- Connect Wallet -->
+        <div id="walletConnect" class="text-center">
+          <button
+            id="connectBtn"
+            class="inline-flex items-center justify-center gap-2 bg-comet text-void font-semibold px-8 py-3.5 rounded-xl text-base hover:bg-comet/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet focus:ring-offset-2 focus:ring-offset-void"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"/></svg>
+            Connect Wallet
+          </button>
+          <p class="text-stardust/60 text-sm mt-3">Works with MetaMask, Coinbase Wallet, and other Ethereum wallets</p>
+        </div>
+
+        <!-- Rewards Panel (hidden until connected) -->
+        <div id="rewardsPanel" class="hidden">
+          <!-- Connected address -->
+          <div class="flex items-center justify-between mb-6 px-4 py-3 rounded-xl bg-white/5 border border-white/10">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+              <span class="text-sm text-stardust" id="walletAddr">0x…</span>
+            </div>
+            <button id="disconnectBtn" class="text-xs text-stardust/50 hover:text-white/70 transition-colors">Disconnect</button>
+          </div>
+
+          <!-- Rewards card -->
+          <div class="gradient-border rounded-2xl p-8 card-glow border border-white/5">
+            <!-- Shares -->
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-white/5">
+              <span class="text-stardust text-sm">Your Shares</span>
+              <span class="font-heading font-bold text-lg text-white/90" id="userShares">--</span>
+            </div>
+
+            <!-- Pending rewards -->
+            <div class="text-center mb-8">
+              <p class="text-stardust text-sm mb-2">Pending Rewards</p>
+              <p class="font-heading text-4xl sm:text-5xl font-bold text-comet glow-text" id="pendingRewards">--</p>
+              <p class="text-stardust/60 text-sm mt-1">ETH</p>
+            </div>
+
+            <!-- Claim button -->
+            <button
+              id="claimBtn"
+              class="w-full inline-flex items-center justify-center bg-comet text-void font-semibold px-8 py-3.5 rounded-xl text-base hover:bg-comet/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-comet focus:ring-offset-2 focus:ring-offset-void disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Claim Rewards
+            </button>
+
+            <!-- Status message -->
+            <p id="claimStatus" class="text-center text-sm mt-4 hidden"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- How to buy -->
   <section id="how-to-buy" class="relative py-24 sm:py-32">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -389,6 +454,153 @@
         star.style.width = (Math.random() * 2 + 1) + 'px';
         star.style.height = star.style.width;
         container.appendChild(star);
+      }
+    })();
+  </script>
+
+  <!-- Wallet & Rewards -->
+  <script>
+    (function () {
+      const DISTRIBUTOR = '0xa0186912Fe067570d9ff1cE64BAC8ECD8352aFc6';
+      const ABI = [
+        'function getUnpaidEarnings(address) view returns (uint256)',
+        'function claimDividend()',
+        'function shares(address) view returns (uint256)',
+        'function totalShares() view returns (uint256)',
+        'function totalDistributed() view returns (uint256)'
+      ];
+      const ETH_CHAIN_ID = '0x1';
+
+      const connectBtn = document.getElementById('connectBtn');
+      const walletConnect = document.getElementById('walletConnect');
+      const rewardsPanel = document.getElementById('rewardsPanel');
+      const walletAddr = document.getElementById('walletAddr');
+      const userShares = document.getElementById('userShares');
+      const pendingRewards = document.getElementById('pendingRewards');
+      const claimBtn = document.getElementById('claimBtn');
+      const claimStatus = document.getElementById('claimStatus');
+      const disconnectBtn = document.getElementById('disconnectBtn');
+
+      let provider, signer, contract, userAddress;
+      let refreshInterval;
+
+      function showStatus(msg, isError) {
+        claimStatus.textContent = msg;
+        claimStatus.className = 'text-center text-sm mt-4 ' + (isError ? 'text-red-400' : 'text-green-400');
+      }
+
+      function hideStatus() {
+        claimStatus.textContent = '';
+        claimStatus.className = 'text-center text-sm mt-4 hidden';
+      }
+
+      async function ensureEthMainnet() {
+        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+        if (chainId !== ETH_CHAIN_ID) {
+          await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: ETH_CHAIN_ID }],
+          });
+        }
+      }
+
+      async function loadRewards() {
+        try {
+          const readContract = new ethers.Contract(DISTRIBUTOR, ABI, provider);
+          const [earnings, sharesBN] = await Promise.all([
+            readContract.getUnpaidEarnings(userAddress),
+            readContract.shares(userAddress),
+          ]);
+          pendingRewards.textContent = parseFloat(ethers.utils.formatEther(earnings)).toFixed(6);
+          userShares.textContent = Number(sharesBN).toLocaleString();
+        } catch (e) {
+          console.error('Failed to load rewards:', e);
+        }
+      }
+
+      async function connect() {
+        if (!window.ethereum) {
+          alert('No wallet detected. Please install MetaMask or another Ethereum wallet.');
+          return;
+        }
+        try {
+          connectBtn.textContent = 'Connecting…';
+          connectBtn.disabled = true;
+
+          await ensureEthMainnet();
+
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          userAddress = accounts[0];
+
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          signer = provider.getSigner();
+          contract = new ethers.Contract(DISTRIBUTOR, ABI, signer);
+
+          walletAddr.textContent = userAddress.slice(0, 6) + '…' + userAddress.slice(-4);
+          walletConnect.classList.add('hidden');
+          rewardsPanel.classList.remove('hidden');
+
+          await loadRewards();
+          refreshInterval = setInterval(loadRewards, 30000);
+        } catch (e) {
+          console.error('Connect failed:', e);
+          connectBtn.textContent = 'Connect Wallet';
+          connectBtn.disabled = false;
+          if (e.code === 4001) return; // user rejected
+          alert('Failed to connect: ' + (e.message || e));
+        }
+      }
+
+      function disconnect() {
+        clearInterval(refreshInterval);
+        userAddress = null;
+        provider = null;
+        signer = null;
+        contract = null;
+        rewardsPanel.classList.add('hidden');
+        walletConnect.classList.remove('hidden');
+        connectBtn.textContent = 'Connect Wallet';
+        connectBtn.disabled = false;
+        hideStatus();
+      }
+
+      async function claim() {
+        if (!contract) return;
+        try {
+          claimBtn.disabled = true;
+          claimBtn.textContent = 'Claiming…';
+          hideStatus();
+
+          const tx = await contract.claimDividend();
+          showStatus('Transaction sent. Waiting for confirmation…', false);
+          await tx.wait();
+
+          showStatus('Rewards claimed successfully!', false);
+          await loadRewards();
+        } catch (e) {
+          console.error('Claim failed:', e);
+          if (e.code === 4001) {
+            hideStatus();
+          } else {
+            showStatus('Claim failed: ' + (e.reason || e.message || 'Unknown error'), true);
+          }
+        } finally {
+          claimBtn.disabled = false;
+          claimBtn.textContent = 'Claim Rewards';
+        }
+      }
+
+      connectBtn.addEventListener('click', connect);
+      claimBtn.addEventListener('click', claim);
+      disconnectBtn.addEventListener('click', disconnect);
+
+      // Handle account/chain changes
+      if (window.ethereum) {
+        window.ethereum.on('accountsChanged', function (accounts) {
+          if (accounts.length === 0) disconnect();
+          else { userAddress = accounts[0]; walletAddr.textContent = userAddress.slice(0, 6) + '…' + userAddress.slice(-4); loadRewards(); }
+        });
+        window.ethereum.on('chainChanged', function () { if (userAddress) { disconnect(); connect(); } });
       }
     })();
   </script>
